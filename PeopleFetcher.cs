@@ -1,4 +1,5 @@
 using System;
+using System.Net;
 using System.Collections.Generic;
 
 namespace CatWorx.BadgeMaker {
@@ -28,6 +29,14 @@ namespace CatWorx.BadgeMaker {
       Employee currentEmployee = new Employee(firstName, lastName, id, photoUrl);
       // Add currentEmployee, not a string
       employees.Add(currentEmployee);
+      }
+
+      using (WebClient client = new WebClient())
+      {
+          // Image example 
+          string response = client.DownloadString("https://randomuser.me/api/?results=10&nat=us&inc=name,id,picture");
+          Console.WriteLine(response);
+
       }
    return employees;
     }
